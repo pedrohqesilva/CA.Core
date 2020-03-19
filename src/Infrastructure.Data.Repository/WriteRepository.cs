@@ -1,11 +1,11 @@
-﻿using Domain.Interfaces.Repositories.Bases;
+﻿using Domain.Services.Interfaces.Repositories;
 using Infrastructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Data.Repository.Bases
+namespace Infrastructure.Data.Repository
 {
     public class WriteRepository<T> : IWriteRepository<T> where T : class
     {

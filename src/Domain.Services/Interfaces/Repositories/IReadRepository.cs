@@ -1,10 +1,10 @@
-﻿using Domain.Interfaces.Queries.Specifications.Bases;
+﻿using Domain.Specifications.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Domain.Interfaces.Repositories.Bases
+namespace Domain.Services.Interfaces.Repositories
 {
     public interface IReadRepository<T>
     {

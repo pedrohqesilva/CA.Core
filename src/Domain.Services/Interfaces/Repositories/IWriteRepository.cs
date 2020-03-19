@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Domain.Interfaces.Repositories.Bases
+namespace Domain.Services.Interfaces.Repositories
 {
     public interface IWriteRepository<T>
     {
