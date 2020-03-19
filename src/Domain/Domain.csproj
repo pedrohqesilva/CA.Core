@@ -6,11 +6,11 @@
     <Authors>Pedro Henrique</Authors>
     <PackageId>CA.Domain</PackageId>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.2</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <Folder Include="Exceptions\" />
-    <Folder Include="ValueObjects\" />
   </ItemGroup>
 
   <ItemGroup>
