@@ -6,7 +6,7 @@ namespace Infrastructure.Data.Context.Mappings
 {
     public abstract class EntityMap<T> : IEntityTypeConfiguration<T> where T : Entity
     {
-        public void Configure(EntityTypeBuilder<T> builder)
+        public virtual void Configure(EntityTypeBuilder<T> builder)
         {
             builder
                 .Property(x => x.Identificador)
