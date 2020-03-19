@@ -69,37 +69,37 @@ namespace Infrastructure.CrossCutting.IoC
             });
         }
 
-        public static void InjectContext(IServiceCollection services, string connectionString)
+        public static void InjectContext<TContext>(IServiceCollection services, string connectionString) where TContext : BaseContext
         {
             if (string.IsNullOrWhiteSpace(connectionString))
             {
-                UseInMemoryDatabase(services);
+                UseInMemoryDatabase<TContext>(services);
                 return;
             }
 
-            UseSqlDatabase(services);
+            UseSqlDatabase<TContext>(services);
         }
 
-        private static void UseInMemoryDatabase(IServiceCollection services)
+        private static void UseInMemoryDatabase<TContext>(IServiceCollection services) where TContext : BaseContext
         {
             var serviceProvider = new ServiceCollection()
                 .AddEntityFrameworkInMemoryDatabase()
                 .BuildServiceProvider();
 
-            services.AddDbContext<BaseContext>(options => options
+            services.AddDbContext<TContext>(options => options
                 .UseInternalServiceProvider(serviceProvider)
                 .UseInMemoryDatabase("InMemoryDb")
                 .EnableSensitiveDataLogging());
         }
 
-        private static void UseSqlDatabase(IServiceCollection services)
+        private static void UseSqlDatabase<TContext>(IServiceCollection services) where TContext : BaseContext
         {
             services.AddScoped((serviceProvider) =>
             {
                 var transaction = serviceProvider.GetService<DbTransaction>();
                 var options = serviceProvider.GetService<DbContextOptions>();
 
-                var context = (BaseContext)Activator.CreateInstance(typeof(BaseContext), options);
+                var context = (TContext)Activator.CreateInstance(typeof(TContext), options);
                 context.Database.UseTransaction(transaction);
                 return context;
             });
