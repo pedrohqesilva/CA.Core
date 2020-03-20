@@ -2,10 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <PackageId>CA.Infrastructure.CrossCutting.Api</PackageId>
+    <PackageId>CA.Api</PackageId>
     <Authors>Pedro Henrique</Authors>
     <Company>CAIXAASSIM</Company>
-    <Product>Infrastructure.CrossCutting.Api</Product>
+    <Product>Api</Product>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
