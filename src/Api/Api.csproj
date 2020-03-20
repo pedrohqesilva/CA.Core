@@ -6,6 +6,7 @@
     <Authors>Pedro Henrique</Authors>
     <Company>CAIXAASSIM</Company>
     <Product>Infrastructure.CrossCutting.Api</Product>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
