@@ -6,15 +6,18 @@
     <Company>CAIXAASSIM</Company>
     <PackageId>CA.Infrastructure.CrossCutting.IoC</PackageId>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MediatR" Version="8.0.1" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="3.1.2" />
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.2" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Domain.Services\Domain.Services.csproj" />
+    <ProjectReference Include="..\Infrastructure.CrossCutting.Bus\Infrastructure.CrossCutting.Bus.csproj" />
     <ProjectReference Include="..\Infrastructure.Data.Context\Infrastructure.Data.Context.csproj" />
   </ItemGroup>
 </Project>

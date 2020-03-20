@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>CA.Infrastructure.CrossCutting.Api</PackageId>
+    <Authors>Pedro Henrique</Authors>
+    <Company>CAIXAASSIM</Company>
+    <Product>Infrastructure.CrossCutting.Api</Product>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GlobalExceptionHandler" Version="4.0.2" />
+    <PackageReference Include="MediatR" Version="8.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="NSwag.AspNetCore" Version="13.3.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="3.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Domain.Services\Domain.Services.csproj" />
+    <ProjectReference Include="..\Infrastructure.CrossCutting.IoC\Infrastructure.CrossCutting.IoC.csproj" />
+  </ItemGroup>
+</Project>

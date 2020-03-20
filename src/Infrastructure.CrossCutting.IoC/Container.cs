@@ -1,4 +1,7 @@
-﻿using Infrastructure.Data.Context;
+﻿using Domain.Services.EventsHandler;
+using Domain.Services.Interfaces.MediatR;
+using Infrastructure.CrossCutting.Bus;
+using Infrastructure.Data.Context;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,9 +17,8 @@ namespace Infrastructure.CrossCutting.IoC
     {
         public static void Register(IServiceCollection services, string connectionString)
         {
-            // services.AddScoped<IMediatorHandler, InMemoryBus>();
-            // services.AddScoped<IEventStoreRepository, EventStoreRepository>();
-            // services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
+            services.AddScoped<IMediatorHandler, InMemoryBus>();
+            services.AddScoped<IDomainNotificationHandler, DomainNotificationHandler>();
 
             ConfigureDbOptions(services, connectionString);
         }
