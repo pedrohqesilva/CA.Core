@@ -1,8 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using NSwag;
-using System.Diagnostics;
 using System.Linq;
-using System.Reflection;
 
 namespace Api.Extensions
 {
@@ -49,13 +47,6 @@ namespace Api.Extensions
                     operation.Operation.RequestBody.Content.Add("multipart/form-data", requestBodyContent);
                 }
             }
-        }
-
-        private static string GetVersaoApi()
-        {
-            var assembly = Assembly.GetExecutingAssembly();
-            var fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
-            return fileVersionInfo.ProductVersion;
         }
     }
 }

@@ -4,14 +4,17 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Logging;
+using System.Diagnostics;
 using System.Globalization;
+using System.Reflection;
 
 namespace Api
 {
     public class BaseStartup
     {
-        public IConfiguration Configuration { get; }
-        private readonly ILogger<BaseStartup> _logger;
+        protected readonly ILogger<BaseStartup> _logger;
+        protected IConfiguration Configuration { get; }
 
         public BaseStartup(IConfiguration configuration, ILogger<BaseStartup> logger)
         {
@@ -21,10 +24,13 @@ namespace Api
 
         public virtual void ConfigureServices(IServiceCollection services)
         {
+            IdentityModelEventSource.ShowPII = true;
+
+            ConfigureCultureInfo();
             RegisterContainers(services);
         }
 
-        protected static void ConfigurarInformacoesCultura()
+        protected static void ConfigureCultureInfo()
         {
             var cultureInfo = new CultureInfo("pt-BR");
             CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
@@ -39,6 +45,13 @@ namespace Api
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             Container.Register(services, connectionString);
+        }
+
+        protected static string GetApiVersion()
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            var fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
+            return fileVersionInfo.ProductVersion;
         }
     }
 }
