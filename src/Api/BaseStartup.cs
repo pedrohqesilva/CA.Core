@@ -5,9 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Logging;
-using System.Diagnostics;
 using System.Globalization;
-using System.Reflection;
 
 namespace Api
 {
@@ -45,13 +43,6 @@ namespace Api
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             Container.Register(services, connectionString);
-        }
-
-        protected static string GetApiVersion()
-        {
-            var assembly = Assembly.GetExecutingAssembly();
-            var fileVersionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
-            return fileVersionInfo.ProductVersion;
         }
     }
 }
