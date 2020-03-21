@@ -15,21 +15,21 @@ namespace Infrastructure.CrossCutting.IoC
 {
     public static class Container
     {
-        public static void Register(IServiceCollection services, string connectionString)
+        public static void Register(IServiceCollection services, string connectionString, string domainName)
         {
             services.AddScoped<IMediatorHandler, InMemoryBus>();
             services.AddScoped<IDomainNotificationHandler, DomainNotificationHandler>();
 
-            ConfigureDbOptions(services, connectionString);
+            ConfigureDbOptions(services, connectionString, domainName);
         }
 
-        private static void ConfigureDbOptions(IServiceCollection services, string connectionString)
+        private static void ConfigureDbOptions(IServiceCollection services, string connectionString, string domainName)
         {
             if (!string.IsNullOrEmpty(connectionString))
             {
                 AddConnection(services, connectionString);
                 AddTransaction(services);
-                AddDbOptions(services);
+                AddDbOptions(services, domainName);
             }
         }
 
@@ -52,7 +52,7 @@ namespace Infrastructure.CrossCutting.IoC
             });
         }
 
-        private static void AddDbOptions(IServiceCollection services)
+        private static void AddDbOptions(IServiceCollection services, string domainName)
         {
             services.AddScoped((serviceProvider) =>
             {
@@ -62,7 +62,7 @@ namespace Infrastructure.CrossCutting.IoC
                     .UseSqlServer(dbConnection, x =>
                     {
                         x.MigrationsHistoryTable("Migrations");
-                        x.MigrationsAssembly("Infrastructure.Data.Migrations");
+                        x.MigrationsAssembly($"{domainName}.Infrastructure.Data.Migrations");
                     })
                     .EnableSensitiveDataLogging();
 
