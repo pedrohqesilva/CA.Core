@@ -6,16 +6,17 @@ namespace Api.Extensions
 {
     public static class SwaggerExtension
     {
-        public static void UseSwaggerMiddleware(this IServiceCollection services, string versaoApi)
+        public static void UseSwaggerMiddleware(this IServiceCollection services, string apiVersion, string domainName, string apiDescription)
         {
             services.AddOpenApiDocument(config =>
             {
-                config.DocumentName = $"V{versaoApi}";
+                config.DocumentName = $"V{apiVersion}";
                 config.PostProcess = document =>
                 {
-                    document.Info.Version = versaoApi;
-                    document.Info.Title = "SGAP Domínios";
-                    document.Info.Description = "API de exposição dos domínios do SGAP";
+                    document.Info.Version = apiVersion;
+                    document.Info.Title = $"CAIXAASSIM - {domainName}";
+                    document.Info.Description = apiDescription;
+
                     SetMultipartFormDataForUploadFile(document);
                 };
             });
