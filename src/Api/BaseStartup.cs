@@ -20,12 +20,12 @@ namespace Api
             _logger = logger;
         }
 
-        public virtual void ConfigureServices(IServiceCollection services)
+        public virtual void ConfigureServices(IServiceCollection services, string domainName)
         {
             IdentityModelEventSource.ShowPII = true;
 
             ConfigureCultureInfo();
-            RegisterContainers(services);
+            RegisterContainers(services, domainName);
         }
 
         protected static void ConfigureCultureInfo()
@@ -35,14 +35,14 @@ namespace Api
             CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
         }
 
-        protected void RegisterContainers(IServiceCollection services)
+        protected void RegisterContainers(IServiceCollection services, string domainName)
         {
             services.AddMediatR(typeof(BaseStartup));
 
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            Container.Register(services, connectionString);
+            Container.Register(services, connectionString, domainName);
         }
     }
 }
