@@ -6,24 +6,26 @@ using System.Threading.Tasks;
 
 namespace Domain.Services.Interfaces.Repositories
 {
-    public interface IReadRepository<T>
+    public interface IReadRepository<TEntity, TContext>
     {
-        IQueryable<T> AsQuerable();
+        IQueryable<TEntity> AsQuerable();
 
-        IQueryable<T> Where(ISpecification<T> specification);
+        IQueryable<TEntity> Where(ISpecification<TEntity> specification);
 
-        Task<bool> All(ISpecification<T> specification, CancellationToken cancellationToken);
+        Task<bool> All(ISpecification<TEntity> specification, CancellationToken cancellationToken);
 
-        Task<bool> Any(ISpecification<T> specification, CancellationToken cancellationToken);
+        Task<bool> Any(ISpecification<TEntity> specification, CancellationToken cancellationToken);
 
-        Task<int> Count(ISpecification<T> specification, CancellationToken cancellationToken);
+        Task<int> Count(ISpecification<TEntity> specification, CancellationToken cancellationToken);
 
-        Task<List<T>> Search(ISpecification<T> specification, CancellationToken cancellationToken);
+        Task<List<TEntity>> Search(ISpecification<TEntity> specification, CancellationToken cancellationToken);
 
-        Task<List<T>> Search(ISpecification<T> specification, int pageNumber, int pageSize, CancellationToken cancellationToken);
+        Task<List<TEntity>> Search(ISpecification<TEntity> specification, int pageNumber, int pageSize, CancellationToken cancellationToken);
 
-        Task<T> FirstOrDefault(ISpecification<T> specification, CancellationToken cancellationToken);
+        Task<List<TEntity>> ToList(CancellationToken cancellationToken);
 
-        ValueTask<T> Find(CancellationToken cancellationToken, params object[] keys);
+        Task<TEntity> FirstOrDefault(ISpecification<TEntity> specification, CancellationToken cancellationToken);
+
+        ValueTask<TEntity> Find(CancellationToken cancellationToken, params object[] keys);
     }
 }

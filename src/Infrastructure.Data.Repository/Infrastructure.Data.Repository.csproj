@@ -6,6 +6,7 @@
     <Company>CAIXAASSIM</Company>
     <PackageId>CA.Infrastructure.Data.Repository</PackageId>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

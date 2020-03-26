@@ -7,41 +7,43 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Data.Repository
 {
-    public class WriteRepository<T> : IWriteRepository<T> where T : class
+    public class WriteRepository<TEntity, TContext> : IWriteRepository<TEntity, TContext>
+        where TEntity : class
+        where TContext : BaseContext
     {
-        private readonly BaseContext _contexto;
+        private readonly TContext _contexto;
 
-        public WriteRepository(BaseContext context)
+        public WriteRepository(TContext context)
         {
             _contexto = context;
         }
 
-        public virtual T Add(T entity)
+        public virtual TEntity Add(TEntity entity)
         {
-            var result = _contexto.Set<T>().Add(entity);
+            var result = _contexto.Set<TEntity>().Add(entity);
             return result.Entity;
         }
 
-        public virtual Task AddRange(IList<T> entity, CancellationToken cancellationToken)
+        public virtual Task AddRange(IList<TEntity> entity, CancellationToken cancellationToken)
         {
-            var result = _contexto.Set<T>().AddRangeAsync(entity, cancellationToken);
+            var result = _contexto.Set<TEntity>().AddRangeAsync(entity, cancellationToken);
             return result;
         }
 
-        public void Attach(T entity)
+        public void Attach(TEntity entity)
         {
             if (_contexto.Entry(entity).State == EntityState.Detached)
             {
-                _contexto.Set<T>().Attach(entity);
+                _contexto.Set<TEntity>().Attach(entity);
             }
         }
 
-        public virtual void Remove(T entity)
+        public virtual void Remove(TEntity entity)
         {
-            _contexto.Set<T>().Remove(entity);
+            _contexto.Set<TEntity>().Remove(entity);
         }
 
-        public virtual void Update(T entity)
+        public virtual void Update(TEntity entity)
         {
             Attach(entity);
             _contexto.Entry(entity).State = EntityState.Modified;

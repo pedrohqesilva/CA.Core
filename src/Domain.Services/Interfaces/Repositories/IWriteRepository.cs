@@ -4,17 +4,17 @@ using System.Threading.Tasks;
 
 namespace Domain.Services.Interfaces.Repositories
 {
-    public interface IWriteRepository<T>
+    public interface IWriteRepository<TEntity, TContext>
     {
-        T Add(T entity);
+        TEntity Add(TEntity entity);
 
-        Task AddRange(IList<T> entity, CancellationToken cancellationToken);
+        Task AddRange(IList<TEntity> entity, CancellationToken cancellationToken);
 
-        void Attach(T entity);
+        void Attach(TEntity entity);
 
-        void Remove(T entity);
+        void Remove(TEntity entity);
 
-        void Update(T entity);
+        void Update(TEntity entity);
 
         Task<int> SaveChanges(CancellationToken cancellationToken);
     }
