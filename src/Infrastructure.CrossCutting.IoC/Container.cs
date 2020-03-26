@@ -15,15 +15,13 @@ namespace Infrastructure.CrossCutting.IoC
 {
     public static class Container
     {
-        public static void Register(IServiceCollection services, string connectionString, string domainName)
+        public static void Register(IServiceCollection services)
         {
             services.AddScoped<IMediatorHandler, InMemoryBus>();
             services.AddScoped<IDomainNotificationHandler, DomainNotificationHandler>();
-
-            ConfigureDbOptions(services, connectionString, domainName);
         }
 
-        private static void ConfigureDbOptions(IServiceCollection services, string connectionString, string domainName)
+        public static void ConfigureDbOptions(IServiceCollection services, string connectionString, string domainName)
         {
             if (!string.IsNullOrEmpty(connectionString))
             {
