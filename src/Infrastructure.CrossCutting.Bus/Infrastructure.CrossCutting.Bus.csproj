@@ -6,10 +6,10 @@
     <Company>CAIXAASSIM</Company>
     <PackageId>CA.Infrastructure.CrossCutting.Bus</PackageId>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Domain.Services\Domain.Services.csproj" />
   </ItemGroup>
-
 </Project>
