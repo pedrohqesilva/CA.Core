@@ -20,11 +20,11 @@ namespace Api.Extensions
             configuration.ContentType = "application/problem+json";
 
             ConfigureDebugInternalError(configuration, logger);
-            ConfigureReleaseInternalError(configuration, logger);
+            //ConfigureReleaseInternalError(configuration, logger);
             ConfigureOnError(configuration, logger);
         }
 
-        [Conditional("DEBUG")]
+        //[Conditional("DEBUG")]
         private static void ConfigureDebugInternalError(ExceptionHandlerConfiguration configuration, ILogger<BaseStartup> logger)
         {
             configuration.ResponseBody(s =>
