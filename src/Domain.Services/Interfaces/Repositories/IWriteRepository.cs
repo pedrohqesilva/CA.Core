@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Services.Interfaces.Repositories
 {
-    public interface IWriteRepository<TEntity, TContext>
+    public interface IWriteRepository<TEntity>
     {
         TEntity Add(TEntity entity);
 

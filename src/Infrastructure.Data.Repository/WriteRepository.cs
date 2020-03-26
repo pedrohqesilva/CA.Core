@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Data.Repository
 {
-    public class WriteRepository<TEntity, TContext> : IWriteRepository<TEntity, TContext>
+    public class WriteRepository<TEntity, TContext> : IWriteRepository<TEntity>
         where TEntity : class
         where TContext : BaseContext
     {

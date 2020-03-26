@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Services.Interfaces.Repositories
 {
-    public interface IReadRepository<TEntity, TContext>
+    public interface IReadRepository<TEntity>
     {
         IQueryable<TEntity> AsQuerable();
 

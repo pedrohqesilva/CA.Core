@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Data.Repository
 {
-    public class ReadWriteRepository<TEntity, TContext> : IReadWriteRepository<TEntity, TContext>
+    public class ReadWriteRepository<TEntity, TContext> : IReadWriteRepository<TEntity>
         where TEntity : class
         where TContext : BaseContext
     {
